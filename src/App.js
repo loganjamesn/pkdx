@@ -1,35 +1,21 @@
 import React from "react";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
-} from "@apollo/client";
+import ApolloClient from "apollo-boost"
+import { ApolloProvider } from "@apollo/react-hooks"
 import { PokemonsContainer } from "./containers/PokemonsContainer";
 
 import './App.scss';
 
-const httpLink = createHttpLink({
-  uri: "https://graphql-pokeapi.vercel.app/api/graphql",
-});
-
-function App() {
+export const App = () => {
 
   const client = new ApolloClient({
-    link: httpLink,
-    cache: new InMemoryCache(),
+    uri: "https://graphql-pokemon2.vercel.app/",
   });
 
   return (
-    <div className="App">
       <ApolloProvider client={client}>
         <main>
           <PokemonsContainer />
         </main>
       </ApolloProvider>
-      
-    </div>
   );
 }
-
-export default App;
